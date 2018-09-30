@@ -148,3 +148,15 @@ set(RE2_HEADERS
 
 install(FILES ${RE2_HEADERS} DESTINATION include/re2)
 install(TARGETS re2 ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+
+include(GNUInstallDirs)
+set(prefix "${CMAKE_INSTALL_PREFIX}")
+set(exec_prefix "${CMAKE_INSTALL_PREFIX}")
+set(includedir "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
+set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
+configure_file(re2.pc.in
+  "${CMAKE_CURRENT_BINARY_DIR}/re2.pc"
+  @ONLY)
+install(
+  FILES "${CMAKE_CURRENT_BINARY_DIR}/re2.pc"
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
